@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 
 export async function sendEmail(email: string, url: string) {
-  if (process.env.NODE_ENV === "test") return;
+  return;
   const account = await nodemailer.createTestAccount();
 
   const transporter = nodemailer.createTransport({
