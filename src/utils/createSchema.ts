@@ -10,10 +10,12 @@ import {
   CreateUserResolver,
   CreateProductResolver
 } from "../modules/user/CreateUser";
+import { ProfilePictureResolver } from "../modules/user/ProfilePicture";
 
 export const createSchema = () =>
   buildSchema({
     resolvers: [
+      ProfilePictureResolver,
       LoginResolver,
       LogoutResolver,
       MeResolver,
