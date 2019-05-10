@@ -5,11 +5,11 @@ import { createConnection } from "typeorm";
 import session from "express-session";
 import connectRedis from "connect-redis";
 import cors from "cors";
-import queryComplexity, {
+/* import queryComplexity, {
   fieldConfigEstimator,
   simpleEstimator
 } from "graphql-query-complexity";
-
+ */
 import { redis } from "./redis";
 import { createSchema } from "./utils/createSchema";
 
@@ -21,7 +21,7 @@ const main = async () => {
     schema,
     context: ({ req, res }: any) => ({ req, res }),
     validationRules: [
-      queryComplexity({
+      /* queryComplexity({
         // The maximum allowed query complexity, queries above this threshold will be rejected
         maximumComplexity: 8,
         // The query variables. This is needed because the variables are not available
@@ -42,7 +42,7 @@ const main = async () => {
             defaultComplexity: 1
           })
         ]
-      }) as any
+      }) as any */
     ]
   });
 
@@ -74,7 +74,7 @@ const main = async () => {
     })
   );
 
-  apolloServer.applyMiddleware({ app });
+  apolloServer.applyMiddleware({ app, cors: false });
 
   app.listen(4000, () => {
     console.log("Server started on http://localhost:4000/graphql");
